@@ -33,6 +33,8 @@ dist-server/
 __dist__/
 **/__fixtures__/Backup/
 endpoints/
+playwright-report/
+test-results/
 
 # solid.js 2.0 scratch codes
 scratch
