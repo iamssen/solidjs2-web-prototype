@@ -1,26 +1,20 @@
-# Component 설명
+# Simple grid 작업 지침
 
-Solid.js 2.0 component.
+작업 전 [docs/Design.md](./docs/Design.md)와
+[docs/Implementation.md](./docs/Implementation.md)를 읽는다.
 
-`docs/Solid2-beta-Migration-Guide.md` Solid.js 2.0 API에 기반하여 작성되어야 함
+- `simple-grid`는 작은 접근 가능한 `<table>`이다. data-grid 기능을 추가하지 않는다.
+- 정렬, 선택, 필터, 페이지네이션, column reorder는 실제 요구가 생길 때까지 구현하지 않는다.
+- 가상화가 필요해지면 `simple-grid`를 복잡하게 만들지 말고 별도 `virtual-grid`를 검토한다.
+- public API 또는 레이아웃 동작을 바꾸면 두 문서와 `preview.tsx`를 함께 갱신한다.
+- Solid.js 2.0 API만 사용한다. 렌더링/반응성 규칙은 프로젝트의 `docs/Solid.md`를 따른다.
 
-`<table>` header와 first column sticky 예제는 <https://codepen.io/chriscoyier/pen/yLVNErX>를 참고하도록 한다.
+변경 후 다음을 실행한다.
 
-이 Component의 가장 큰 목적은 화면이 작아서 전체 column을 표현하기 어려운 경우엔 첫번째 column을 sticky로 고정하여 스크롤하고,
-화면이 넉넉해서 전체 column을 표현 가능한 경우엔 스크롤없는 일반 `<table>` 형태로 표시하는 것이다.
-
-# Component 디자인
-
-```tsx
-<SimpleGrid>
-  <Column minWidth={100} maxWidth={150} render="number(key1)" />
-  <Column minWidth={100} maxWidth={150} render="string(key2)" />
-  <Column minWidth={100} maxWidth={150} render={ColumnRenderer} />
-</SimpleGrid>
+```sh
+npx prettier --check apps/app/components/simple-grid
+npx eslint apps/app/components/simple-grid
+npm run build:app
 ```
 
-- `<table>`을 기반으로 한다
-- minWidth 들을 모두 합산해서 전체 column들의 totalMinWidth를 구한다
-- `<table>` element의 실측 사이즈를 구하고, totalMinWidth과 비교한다
-  - 실측 사이즈가 totalMinWidth보다 크면, header만 sticky로 고정하고 tbody는 스크롤 되도록 한다.
-  - 실측 사이즈가 totalMinWidth보다 작으면, 전체 column들은 minWidth로 고정하고, header와 첫번째 column을 sticky로 고정하고, 모두 스크롤 되도록 한다.
+전체 type-check가 실패하면 변경한 component 오류와 기존 오류를 구분해 보고한다.
