@@ -32,12 +32,13 @@
   },
   "dependencies": {
     "@solidjs/web": "next",
+    "@solidjs/router": "next",
     "solid-js": "next"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@playwright/test": "^1.61.1",
-    "@ssen/eslint-plugin-solid": "^2.0.0-next.2",
+    "@ssen/eslint-plugin-solid": "^2.0.0-next.4",
     "@testing-library/jest-dom": "^6.6.3",
     "@types/node": "^25.7.0",
     "@typescript/native": "npm:typescript@^7.0.2",
