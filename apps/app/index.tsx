@@ -1,8 +1,9 @@
 import { A, Route, Router } from '@solidjs/router';
 import type { ComponentProps } from '@solidjs/web';
 import { render } from '@solidjs/web';
-import { Main } from './main/index.tsx';
-import { RuntimeChecks } from './runtime-checks/index.tsx';
+import { Learn } from './learn/main.tsx';
+import { RuntimeChecks } from './runtime-checks/main.tsx';
+import { PageNotFound } from './status/404.tsx';
 
 function App(props: ComponentProps<typeof Router>) {
   return (
@@ -20,7 +21,8 @@ render(
   () => (
     <Router root={App}>
       <Route path="/runtime-checks" component={RuntimeChecks} />
-      <Route component={Main} />
+      <Route component={Learn} />
+      <Route path="*404" component={PageNotFound} />
     </Router>
   ),
   document.querySelector('#root')!,
