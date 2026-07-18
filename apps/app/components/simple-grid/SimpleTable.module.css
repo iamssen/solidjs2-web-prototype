@@ -1,9 +1,23 @@
 .viewport {
   overflow: auto;
   overscroll-behavior: none;
+  /*
+   * overflow가 실제로 발생한 축에만 OS scrollbar가 나타난다. scrollbar를 숨기지
+   * 않고 thin 크기와 대비가 충분한 thumb 색만 지정해, 행과 열을 많이 탐색할 때도
+   * 공간을 과도하게 차지하지 않으면서 scroll 가능 여부를 알 수 있게 한다.
+   */
+  scrollbar-width: thin;
+  scrollbar-color: #94a3b8 transparent;
   border: 1px solid #cbd5e1;
   border-radius: 0.5rem;
   background: #ffffff;
+}
+
+@media (forced-colors: active) {
+  .viewport {
+    /* 고대비 모드에서는 사용자가 선택한 scrollbar 색을 그대로 사용한다. */
+    scrollbar-color: auto;
+  }
 }
 
 .table {
@@ -20,16 +34,6 @@
   border-bottom: 1px solid #e2e8f0;
   text-align: left;
   white-space: nowrap;
-}
-
-.table th[data-align='center'],
-.table td[data-align='center'] {
-  text-align: center;
-}
-
-.table th[data-align='end'],
-.table td[data-align='end'] {
-  text-align: end;
 }
 
 .table th:last-child,

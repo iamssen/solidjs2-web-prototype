@@ -1,0 +1,5 @@
+- `SimpleTableAlignment`과 `SimpleTableColumn.align`은 굳이 필요없어 보임. 가능한 CSS를 통해 커스텀 하는게 좋다고 생각됨. 잡다한 API를 줄이는게 좋음.
+- `SimpleTableColumn.header`에는 `(rows: Row[], column: SimpleTableColumn<Row>) => Element`가 있으면 좋을 것 같음. column header에 sum 등을 표시할때 사용 가능함.
+- `SimpleTableColumn.key`와 `cell`이 구분되어야 할 필요를 모르겠음. `|`로 합칠 수 있을 것 같은데. 어차피 `cell`을 사용해야 하는 경우엔 `key`를 사용하지 않고 그냥 Row를 받아서 렌더링 할 것으로 보임. 이걸 합치는 경우의 property name으로 뭐가 적합할지 추천해주길 바람.
+- `SimpleTableColumn.minWidth`와 `maxWidth`의 의미를 좀 더 명확히 표현할 수 있는 대안을 추천해주길 바람.
+- `SimpleTableProps`는 `JSX.HTMLAttributes<HTMLTableElement>`를 상속해서 table 관련 속성들에 직접 접근하게 하는 것도 고려해볼 수 있을 것 같음. 이 경우 ariaLabel 같은 것들은 제거될 수 있어보이고, class를 viewportClass로 바꿔야 할 것으로 보임. 상당히 유연하게 변경되는 만큼 예상되는 리스크를 알려주길 바람.

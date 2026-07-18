@@ -1,0 +1,53 @@
+.example {
+  margin-top: 2rem;
+}
+
+.viewport.viewport {
+  border-color: #dbeafe;
+  box-shadow: 0 0.25rem 1rem rgb(15 23 42 / 0.08);
+}
+
+.table.table th,
+.table.table td {
+  border-color: #e2e8f0;
+}
+
+.table.table thead th {
+  background: #eff6ff;
+  color: #1e3a8a;
+}
+
+.table.table tbody tr:nth-child(even) td {
+  background: #f8fafc;
+}
+
+.table.table tbody tr:hover td {
+  background: #eff6ff;
+}
+
+.status {
+  display: inline-block;
+  padding: 0.2rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.On\ track {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.At\ risk {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.Planning {
+  background: #e0e7ff;
+  color: #3730a3;
+}
+
+.end {
+  text-align: end;
+}

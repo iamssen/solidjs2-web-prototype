@@ -1,0 +1,33 @@
+.example {
+  margin-top: 2rem;
+}
+
+.viewport.viewport {
+  border-color: #94a3b8;
+  border-radius: 0.25rem;
+}
+
+.table.table th,
+.table.table td {
+  padding: 0.5rem 0.75rem;
+  border-color: #cbd5e1;
+}
+
+.table.table thead th {
+  background: #e2e8f0;
+  color: #334155;
+  font-size: 0.8125rem;
+}
+
+.table.table tbody td:first-child {
+  font-weight: 600;
+}
+
+.table.table tbody td:last-child {
+  background: #f8fafc;
+  font-weight: 700;
+}
+
+.amount {
+  text-align: end;
+}
