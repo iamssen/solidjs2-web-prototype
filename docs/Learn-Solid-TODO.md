@@ -2,7 +2,7 @@
 
 ## Solid.js 기본 기능 학습
 
-- [ ] `ComponentProps<HtmlDivElement>`와 같이 Html type 결합 방법
+- [x] `ComponentProps<HtmlDivElement>`와 같이 Html type 결합 방법
 - [ ] `createMemo`로 파생 상태를 표현하는 방법과 React dependency array와의 차이
 - [ ] `createEffect(compute, apply)`, `onSettled`, cleanup을 이용한 side effect 처리
 - [ ] reactive scope에서의 read/write 제약과 props 객체를 유지하는 컴포넌트 작성 방식
@@ -14,9 +14,9 @@
 
 ## React 라이브러리 대응
 
-- [ ] `@tanstack/react-query` → `@tanstack/solid-query`
-- [x] `react-router` → `@solidjs/router`
-- [ ] `react-data-grid`
-- [ ] `react-icons`
+- [ ] `@tanstack/react-query` -> `@tanstack/solid-query`
+- [x] `react-router` -> `@solidjs/router`
+- [x] `react-data-grid` -> `simple-grid`
+- [ ] `react-icons` -> `solid-icons`
 - [ ] `react-responsive`
 - [ ] `react-markdown`
