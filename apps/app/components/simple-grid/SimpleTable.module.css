@@ -5,11 +5,10 @@
    * overflow가 실제로 발생한 축에만 OS scrollbar가 나타난다. scrollbar를 숨기지
    * 않고 thin 크기와 대비가 충분한 thumb 색만 지정해, 행과 열을 많이 탐색할 때도
    * 공간을 과도하게 차지하지 않으면서 scroll 가능 여부를 알 수 있게 한다.
-   */
+  */
   scrollbar-width: thin;
   scrollbar-color: #94a3b8 transparent;
-  border: 1px solid #cbd5e1;
-  border-radius: 0.5rem;
+  border-radius: 0.375rem;
   background: #ffffff;
 }
 
@@ -29,29 +28,26 @@
 .table th,
 .table td {
   box-sizing: border-box;
-  padding: 0.75rem 1rem;
-  border-right: 1px solid #e2e8f0;
-  border-bottom: 1px solid #e2e8f0;
+  padding: 0.375rem 0.625rem;
   text-align: left;
   white-space: nowrap;
-}
-
-.table th:last-child,
-.table td:last-child {
-  border-right: 0;
-}
-
-.table tbody tr:last-child td {
-  border-bottom: 0;
+  font-size: 0.8125rem;
 }
 
 .table thead th {
   position: sticky;
   z-index: 2;
   top: 0;
-  background: #f8fafc;
-  box-shadow: 0 1px 0 #cbd5e1;
+  background: #ffffff;
+  color: #64748b;
+  font-size: 0.6875rem;
   font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.table tbody tr:hover td {
+  background: #f8fafc;
 }
 
 .table.overflowing {
@@ -64,7 +60,6 @@
   z-index: 1;
   left: 0;
   background: #ffffff;
-  box-shadow: 1px 0 0 #cbd5e1;
 }
 
 .table.overflowing.stickyFirstColumn thead th:first-child {

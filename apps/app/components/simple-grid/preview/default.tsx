@@ -1,8 +1,7 @@
 import type { Element } from 'solid-js';
 import { createSignal } from 'solid-js';
-import type { SimpleTableColumn } from '../index.ts';
 import { SimpleTable } from '../index.ts';
-import styles from './compact.module.css';
+import type { SimpleTableColumn } from '../index.ts';
 
 type Activity = {
   id: string;
@@ -23,7 +22,7 @@ const createActivity = (): readonly Activity[] => {
     const hour = Math.floor(minutes / 60);
 
     return {
-      id: `compact-${seed}-${index}`,
+      id: `default-${seed}-${index}`,
       time: `${String(hour).padStart(2, '0')}:${String(minutes % 60).padStart(
         2,
         '0',
@@ -51,24 +50,22 @@ const columns = [
   { id: 'result', cell: 'result', header: 'Result', minWidth: 130 },
 ] as const satisfies readonly SimpleTableColumn<Activity>[];
 
-export function CompactPreview(): Element {
+export function DefaultPreview(): Element {
   const [activity, setActivity] = createSignal(createActivity());
 
   return (
-    <section class={styles.example}>
-      <h2>Compact activity</h2>
+    <section>
+      <h2>Default</h2>
       <p>
-        60 high-density rows for timelines, logs, and supporting information.
+        No custom class or style; this is the built-in SimpleTable appearance.
       </p>
       <button type="button" onClick={() => setActivity(createActivity())}>
         Randomize data
       </button>
       <SimpleTable
-        class={styles.table}
-        viewportClass={styles.viewport}
         columns={columns}
         rows={activity()}
-        aria-label="Recent account activity"
+        aria-label="Default recent account activity"
         maxHeight="13rem"
         getRowKey={(entry) => entry.id}
       />

@@ -1,6 +1,13 @@
 import type { JSX } from '@solidjs/web';
 import type { Element } from 'solid-js';
-import { createSignal, For, omit, onSettled, Show } from 'solid-js';
+import {
+  createEffect,
+  createSignal,
+  For,
+  omit,
+  onSettled,
+  Show,
+} from 'solid-js';
 import styles from './SimpleTable.module.css';
 
 /**
@@ -234,6 +241,13 @@ export function SimpleTable<Row extends SimpleTableRow>(
       key: props.getRowKey?.(row, rowIndex) ?? row,
       row,
     }));
+
+  createEffect(
+    () => props.rows,
+    () => {
+      viewport?.scrollTo({ left: 0, top: 0 });
+    },
+  );
 
   onSettled(() => {
     const viewportElement = viewport;

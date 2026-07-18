@@ -61,12 +61,15 @@ columnIndex가 전달된다. 변경되는 rows에는 `getRowKey`를 제공한다
 - overflowing일 때만 CSS가 첫 열을 sticky로 만든다. 기본값은
   `stickyFirstColumn={true}`다.
 - `onSettled`에서 observer를 설치하고 cleanup으로 해제한다.
+- `createEffect`는 `rows` 배열 참조가 바뀌는 것을 관찰해 viewport를 좌상단으로 scroll한다.
 - `For keyed={(row) => key}`의 child는 accessor를 받는다. row를 읽을 때는 `row()`을 사용한다.
 - viewport에는 `overscroll-behavior: none`을 유지한다.
 
 ## HTML과 스타일
 
 - `<table>`, `<thead>`, `<tbody>`, `<th scope="col">` 구조를 유지한다.
+- 기본 style은 compact한 padding과 hover만 제공하며, border·grid line·header separator는
+  포함하지 않는다. preview의 compact·spreadsheet 같은 variant가 class로 선과 강조를 더한다.
 - table의 접근 가능한 이름은 `'aria-label'` 또는 `'aria-labelledby'`로 제공한다.
 - rows가 없으면 `empty`를 columns 수만큼 colspan한 단일 셀에 표시한다.
 - `class`는 table, `viewportClass`는 scroll viewport,
@@ -80,6 +83,6 @@ columnIndex가 전달된다. 변경되는 rows에는 `getRowKey`를 제공한다
 ## 변경 시 확인할 것
 
 - wide/overflowing viewport 모두에서 header와 첫 열 sticky를 확인한다.
-- empty, 다수 행 스크롤, custom cell, dynamic header, CSS 정렬, custom class,
-  native table attribute, `stickyFirstColumn={false}`를 확인한다.
+- empty, 다수 행 스크롤, data 교체 뒤 scroll reset, custom cell, dynamic header, CSS 정렬,
+  custom class, native table attribute, `stickyFirstColumn={false}`를 확인한다.
 - API나 동작이 달라지면 `Design.md`, 이 문서, preview를 함께 갱신한다.

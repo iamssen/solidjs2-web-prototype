@@ -1,4 +1,5 @@
 import type { Element } from 'solid-js';
+import { createSignal } from 'solid-js';
 import { SimpleTable } from '../index.ts';
 import type { SimpleTableColumn } from '../index.ts';
 import styles from './spreadsheet.module.css';
@@ -14,24 +15,28 @@ type Forecast = {
 
 const formatCurrency = (value: number) => `$${value.toLocaleString('en-US')}`;
 
-const rows: readonly Forecast[] = Array.from({ length: 60 }, (_, index) => {
-  const baseAmount = 12_000 + index * 850;
-  const april = baseAmount;
-  const may = baseAmount + 1300;
-  const june = baseAmount + 2100;
-  const july = baseAmount + 2900;
+const createRows = (): readonly Forecast[] => {
+  const seed = Math.floor(Math.random() * 20_000);
 
-  return {
-    metric: `${['Revenue', 'Operating cost', 'Net income'][index % 3]} ${String(
-      Math.floor(index / 3) + 1,
-    ).padStart(2, '0')}`,
-    april,
-    may,
-    june,
-    july,
-    total: april + may + june + july,
-  };
-});
+  return Array.from({ length: 60 }, (_, index) => {
+    const baseAmount = 12_000 + seed + index * 850;
+    const april = baseAmount;
+    const may = baseAmount + 1300;
+    const june = baseAmount + 2100;
+    const july = baseAmount + 2900;
+
+    return {
+      metric: `${['Revenue', 'Operating cost', 'Net income'][index % 3]} ${String(
+        Math.floor(index / 3) + 1,
+      ).padStart(2, '0')}`,
+      april,
+      may,
+      june,
+      july,
+      total: april + may + june + july,
+    };
+  });
+};
 
 const columns = [
   { id: 'metric', cell: 'metric', header: 'FY26', minWidth: 180 },
@@ -81,15 +86,20 @@ const columns = [
 ] as const satisfies readonly SimpleTableColumn<Forecast>[];
 
 export function SpreadsheetPreview(): Element {
+  const [rows, setRows] = createSignal(createRows());
+
   return (
     <section class={styles.example}>
       <h2>Spreadsheet</h2>
       <p>Dense grid lines for comparing 60 values across monthly columns.</p>
+      <button type="button" onClick={() => setRows(createRows())}>
+        Randomize data
+      </button>
       <SimpleTable
         class={styles.table}
         viewportClass={styles.viewport}
         columns={columns}
-        rows={rows}
+        rows={rows()}
         aria-label="Quarterly financial forecast"
         maxHeight="12rem"
         getRowKey={(row) => row.metric}

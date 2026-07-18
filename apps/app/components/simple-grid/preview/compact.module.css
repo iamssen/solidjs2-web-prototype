@@ -3,15 +3,26 @@
 }
 
 .viewport.viewport {
-  border-color: #e2e8f0;
+  border: 1px solid #e2e8f0;
   border-radius: 0.375rem;
 }
 
 .table.table th,
 .table.table td {
   padding: 0.375rem 0.625rem;
+  border-right: 1px solid #f1f5f9;
+  border-bottom: 1px solid #f1f5f9;
   border-color: #f1f5f9;
   font-size: 0.8125rem;
+}
+
+.table.table th:last-child,
+.table.table td:last-child {
+  border-right: 0;
+}
+
+.table.table tbody tr:last-child td {
+  border-bottom: 0;
 }
 
 .table.table thead th {

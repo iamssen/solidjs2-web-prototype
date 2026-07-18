@@ -8,6 +8,10 @@
 - 열 최소 너비의 합보다 viewport가 좁으면 가로 스크롤을 사용한다.
 - 이때 header와 첫 열을 고정해 행의 의미를 잃지 않게 한다.
 - 세로 스크롤은 table 전체가 아닌 단일 viewport가 담당한다.
+- rows가 새 배열로 교체되면 viewport scroll 위치를 좌상단으로 되돌려 새 데이터를 첫 행과
+  첫 열부터 읽게 한다.
+- 기본 style은 작은 padding과 은은한 hover만 사용하며, border·grid line·header separator를
+  표시하지 않는다. 선이 필요한 화면은 class로 별도 style을 적용한다.
 
 Sticky table의 시각적 원칙은
 <https://codepen.io/chriscoyier/pen/yLVNErX>를 참고한다.

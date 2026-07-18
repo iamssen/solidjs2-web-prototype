@@ -1,4 +1,5 @@
 import type { Element } from 'solid-js';
+import { createSignal } from 'solid-js';
 import { SimpleTable } from '../index.ts';
 import type { SimpleTableColumn } from '../index.ts';
 import styles from './minimal.module.css';
@@ -12,18 +13,25 @@ type Member = {
   availability: string;
 };
 
-const members: readonly Member[] = Array.from({ length: 60 }, (_, index) => {
-  const memberNumber = index + 1;
+const createMembers = (): readonly Member[] => {
+  const seed = Math.floor(Math.random() * 10_000);
 
-  return {
-    name: `Member ${String(memberNumber).padStart(2, '0')}`,
-    team: ['Platform', 'Design systems', 'Data'][index % 3],
-    role: ['Frontend engineer', 'Product designer', 'Data engineer'][index % 3],
-    location: ['Seoul', 'Busan', 'Incheon', 'Daejeon'][index % 4],
-    email: `member${memberNumber}@example.com`,
-    availability: ['Available', 'Focus time', 'Out of office'][index % 3],
-  };
-});
+  return Array.from({ length: 60 }, (_, index) => {
+    const memberNumber = index + 1;
+    const value = index + seed;
+
+    return {
+      name: `Member ${String(memberNumber).padStart(2, '0')}`,
+      team: ['Platform', 'Design systems', 'Data'][value % 3],
+      role: ['Frontend engineer', 'Product designer', 'Data engineer'][
+        value % 3
+      ],
+      location: ['Seoul', 'Busan', 'Incheon', 'Daejeon'][value % 4],
+      email: `member${memberNumber}@example.com`,
+      availability: ['Available', 'Focus time', 'Out of office'][value % 3],
+    };
+  });
+};
 
 const columns = [
   { id: 'name', cell: 'name', header: 'Name', minWidth: 140 },
@@ -40,12 +48,17 @@ const columns = [
 ] as const satisfies readonly SimpleTableColumn<Member>[];
 
 export function MinimalPreview(): Element {
+  const [members, setMembers] = createSignal(createMembers());
+
   return (
     <section class={styles.example}>
       <h2 id="minimal-table-heading">Minimal</h2>
       <p>
         A small, clean table with no visible grid lines and 60 team members.
       </p>
+      <button type="button" onClick={() => setMembers(createMembers())}>
+        Randomize data
+      </button>
       <SimpleTable
         id="minimal-team-directory"
         data-preview="minimal"
@@ -53,7 +66,7 @@ export function MinimalPreview(): Element {
         class={styles.table}
         viewportClass={styles.viewport}
         columns={columns}
-        rows={members}
+        rows={members()}
         maxHeight="12rem"
         getRowKey={(member) => member.name}
       />
