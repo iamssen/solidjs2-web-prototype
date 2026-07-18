@@ -2,7 +2,7 @@ import type { JSX } from '@solidjs/web';
 import type { Element } from 'solid-js';
 import { createSignal } from 'solid-js';
 
-// HTMLElement type을 component props에 결합
+// 고정된 div를 root로 쓰는 component에는 div 전용 HTML attribute와 event type을 상속한다.
 interface DivProps extends JSX.HTMLAttributes<HTMLDivElement> {}
 
 function Div(props: DivProps): Element {
