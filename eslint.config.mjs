@@ -2,6 +2,7 @@ import js from '@eslint/js';
 import solid from '@ssen/eslint-plugin-solid';
 import prettier from 'eslint-config-prettier';
 import { importX } from 'eslint-plugin-import-x';
+import storybook from 'eslint-plugin-storybook';
 import unicorn from 'eslint-plugin-unicorn';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
@@ -38,6 +39,7 @@ export default [
       'unicorn/no-array-callback-reference': 'off',
       'unicorn/prefer-type-error': 'off',
       'unicorn/no-nested-ternary': 'off',
+      'unicorn/name-replacements': 'off',
 
       'prefer-const': 'off',
       'no-undef': 'off',
@@ -96,4 +98,5 @@ export default [
       'no-restricted-imports': ['error', { patterns: ['@ui/*'] }],
     },
   },
+  ...storybook.configs['flat/recommended'],
 ];

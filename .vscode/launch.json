@@ -17,6 +17,23 @@
         "action": "debugWithChrome",
         "webRoot": "${workspaceFolder}/apps/app"
       }
+    },
+    {
+      "name": "Storybook",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "storybook"],
+      "console": "integratedTerminal",
+      "serverReadyAction": {
+        // watch for Storybook message pattern
+        //   Local:   http://localhost:6006/
+        //   Network: http://192.168.1.64:6006/
+        "pattern": "Local:.*http://localhost:([0-9]+)",
+        "uriFormat": "http://localhost:%s",
+        "action": "debugWithChrome",
+        "webRoot": "${workspaceFolder}"
+      }
     }
   ]
 }
